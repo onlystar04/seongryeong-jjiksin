@@ -276,6 +276,81 @@ button:focus-visible{outline:3px solid var(--sky-d); outline-offset:3px}
 .horror-card.dead .mono{background:#151517; border-color:#3a3a3a}
 .horror-card.dead .result-head,.horror-card.dead .correct{color:#6f6464}
 
+/* ===== 배지 시스템 ===== */
+.badge-btn{margin-top:14px; background:var(--yellow); font-size:18px; display:inline-flex; align-items:center; gap:8px; padding:9px 18px}
+.badge-btn .cnt{font-size:15px; background:var(--paper); border:2px solid var(--ink); border-radius:99px; padding:1px 9px}
+.title-btns{display:flex; flex-direction:column; align-items:center}
+.medal{display:block; overflow:visible}
+.medal text{font-family:'Jua',sans-serif}
+.medal.locked{filter:brightness(0) opacity(.28)}
+.theme-dark .medal.locked{filter:brightness(0) invert(.18) opacity(.6)}
+.medal .spark{transform-box:fill-box; transform-origin:center; animation:spark 1.4s ease-in-out infinite}
+.medal .spark.s2{animation-delay:.45s} .medal .spark.s3{animation-delay:.9s}
+@keyframes spark{0%,100%{transform:scale(.3); opacity:.2} 50%{transform:scale(1.15); opacity:1}}
+.medal.gold-shine{animation:goldPulse 1.6s ease-in-out infinite}
+@keyframes goldPulse{0%,100%{filter:drop-shadow(0 0 2px rgba(255,200,40,.5))} 50%{filter:drop-shadow(0 0 12px rgba(255,210,60,.95))}}
+.medal.red-glow{filter:drop-shadow(0 0 6px rgba(220,20,40,.55))}
+.medal.glitchy{animation:medalGlitch 2.6s steps(1) infinite}
+@keyframes medalGlitch{0%,100%{transform:none; filter:drop-shadow(0 0 6px rgba(220,20,40,.5))} 46%{transform:translate(-2px,1px); filter:drop-shadow(3px 0 0 rgba(255,30,60,.8)) drop-shadow(-3px 0 0 rgba(30,220,210,.5))} 49%{transform:none} 82%{transform:translate(2px,-1px) skewX(3deg)} 84%{transform:none}}
+
+/* 내 배지 화면 */
+.badge-screen{padding-top:72px}
+.badge-wrap{width:100%; max-width:860px}
+.badge-head{text-align:center; margin-bottom:18px}
+.badge-head h2{font-size:clamp(28px,7vw,40px); margin:0; font-weight:normal; color:var(--paper); -webkit-text-stroke:2.5px var(--ink); paint-order:stroke fill; text-shadow:0 4px 0 var(--ink)}
+.badge-count{display:inline-flex; align-items:center; gap:10px; margin-top:12px; background:var(--paper); color:var(--ink); border:3px solid var(--ink); border-radius:99px; padding:6px 16px; font-size:18px; box-shadow:0 3px 0 var(--ink)}
+.badge-count .bar{width:120px; height:12px}
+.badge-sec{background:var(--paper); color:var(--ink); border:3px solid var(--ink); border-radius:18px; box-shadow:0 5px 0 var(--ink); padding:14px 14px 16px; margin-bottom:18px}
+.badge-sec h3{margin:0 0 12px; font-weight:normal; font-size:21px; display:flex; justify-content:space-between; align-items:baseline}
+.badge-sec h3 small{font-size:15px; color:var(--sub)}
+.badge-sec.awake{background:#141215; color:#eadede; border-color:#2a0c10; box-shadow:0 5px 0 #2a0c10}
+.badge-sec.awake h3 small{color:#b88b90}
+.badge-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(128px,1fr)); gap:10px}
+@media (max-width:420px){ .badge-grid{grid-template-columns:repeat(2,1fr)} }
+.bcard{display:flex; flex-direction:column; align-items:center; gap:6px; padding:12px 6px 10px; border:2.5px solid var(--ink); border-radius:14px; background:#fff; color:var(--ink); font-size:16px; box-shadow:0 3px 0 var(--ink); transition:transform .08s}
+.bcard:hover{transform:translateY(-2px)}
+.bcard:active{transform:translateY(2px); box-shadow:0 1px 0 var(--ink)}
+.bcard.locked{background:#ece7da; color:#8d8778}
+.bcard .bname{line-height:1.2; text-align:center; min-height:2.4em; display:flex; align-items:center}
+.awake .bcard{background:#1d1416; color:#f0e6e6; border-color:#5a2026; box-shadow:0 3px 0 #2a0c10}
+.awake .bcard.locked{background:#100d0e; color:#6f5e60}
+.badge-close{display:flex; flex-direction:column; align-items:center; gap:4px; margin-top:6px}
+
+/* 배지 상세 / 확인창 공용 모달 */
+.modal-back{position:fixed; inset:0; z-index:70; background:rgba(20,16,30,.55); display:grid; place-items:center; padding:20px; animation:fadeIn .2s both}
+.modal{width:100%; max-width:360px; background:var(--paper); color:var(--ink); border:3px solid var(--ink); border-radius:20px; box-shadow:0 6px 0 var(--ink); padding:22px 20px 18px; text-align:center; animation:pop .3s cubic-bezier(.2,1.5,.4,1) both}
+.modal .mname{font-size:26px; margin:10px 0 4px}
+.modal .mdesc{font-size:18px; line-height:1.45; margin:0 0 12px}
+.modal .mcond{font-size:15px; color:var(--sub); background:var(--sky-l); border-radius:10px; padding:8px 10px; margin:0 0 14px}
+.modal .mstate{display:inline-block; font-size:14px; border:2px solid var(--ink); border-radius:99px; padding:2px 10px; margin-bottom:6px; background:var(--mint)}
+.modal .mstate.no{background:#ddd}
+.modal.dark{background:#141215; color:#eadede; border-color:#5a2026; box-shadow:0 6px 0 #2a0c10}
+.modal.dark .mcond{background:#2a1517; color:#c9a9ab}
+.modal-btns{display:flex; gap:10px; justify-content:center}
+.modal-btns .btn{flex:1; max-width:150px}
+.confirm-msg{font-size:21px; line-height:1.45; margin:6px 0 18px}
+
+/* 백지 제출 버튼 */
+.blank-btn{flex:none; background:#e9e6df; font-size:15px; padding:9px 12px}
+
+/* 새 배지 획득 팝업 */
+.badge-toast{position:fixed; left:50%; bottom:calc(env(safe-area-inset-bottom,0px) + 18px); transform:translateX(-50%); z-index:65; width:min(92vw,380px);
+  background:var(--paper); color:var(--ink); border:3px solid var(--ink); border-radius:18px; box-shadow:0 6px 0 var(--ink); padding:12px 14px 14px; text-align:center; animation:toastUp .45s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes toastUp{from{opacity:0; transform:translate(-50%,30px) scale(.9)} to{opacity:1; transform:translate(-50%,0) scale(1)}}
+.badge-toast .tt{font-size:21px; margin-bottom:8px; color:var(--redpen)}
+.badge-toast ul{list-style:none; margin:0 0 10px; padding:0; display:flex; flex-direction:column; gap:6px; max-height:46vh; overflow:auto}
+.badge-toast li{display:flex; align-items:center; gap:12px; text-align:left; background:#fff; border:2px solid var(--ink); border-radius:12px; padding:6px 10px; font-size:18px; opacity:0; animation:pop .35s cubic-bezier(.2,1.6,.4,1) forwards}
+.badge-toast li small{display:block; font-size:13px; color:var(--sub)}
+.badge-toast .btn{padding:8px 22px; font-size:17px}
+.badge-toast.dark{background:#141215; color:#eadede; border-color:#8a1f2b; box-shadow:0 6px 0 #3d0b11, 0 0 26px rgba(200,20,40,.35)}
+.badge-toast.dark .tt{color:#ff4d5e}
+.badge-toast.dark li{background:#1d1416; border-color:#5a2026}
+.badge-toast.dark li small{color:#b88b90}
+
+@media (prefers-reduced-motion: reduce){
+  .medal .spark,.medal.gold-shine,.medal.glitchy{animation:none !important}
+}
+
 @media (prefers-reduced-motion: reduce){
   .shake-s,.lv-1 .sheet,.lv-2 .sheet,.lv-3 .sheet,.lv-4 .sheet,.lv-5 .sheet,.horror-msg,.rank-glitch,.pencil-spin,.bloody-face,.doubt{animation:none !important}
   .exam.thump{transform:none}
@@ -427,6 +502,103 @@ const store = {
   save(d) { try { window.localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(d)); } catch (e) { /* 저장소를 못 쓰면 메모리로만 진행 */ } },
   clear() { try { window.localStorage.removeItem(CONFIG.STORAGE_KEY); } catch (e) {} }
 };
+
+/* =========================================================
+   배지 시스템 — 배지 목록·문구 (여기만 고치면 됩니다)
+   ========================================================= */
+const BADGE_STORAGE_KEY = "seongryeong-jjiksin-badges-v1";   // 게임 회차 기록과 따로 저장
+const HERO_IDS = ["hero1", "hero2", "hero3", "hero4", "hero5"];
+const HERO_COLORS = {   // 숫자 용사 파스텔 메달 [바탕, 안쪽 원, 리본]
+  1: ["#f8b4c6", "#ffd9e3", "#e2738f"],
+  2: ["#9fd3f2", "#d6eefc", "#4a9fd4"],
+  3: ["#a6e3c8", "#d7f5e8", "#4fb48a"],
+  4: ["#ffe08a", "#fff2c6", "#e6ad2e"],
+  5: ["#cbb8f3", "#ebe2ff", "#8e70d6"]
+};
+const HERO_DESC = {
+  1: "처음부터 끝까지 1번만 믿은 자. 시작이 곧 끝이었다.",
+  2: "1번은 너무 뻔하니까… 끝까지 2번을 고른 자.",
+  3: "찍기의 국룰, 3번. 흔들림 없이 지킨 자.",
+  4: "남들이 피하는 4번을 끝까지 밀어붙인 자.",
+  5: "마지막 번호에 운명을 건 자. 끝까지 5번!"
+};
+const BADGES = [
+  ...[1, 2, 3, 4, 5].map((n) => ({ id: "hero" + n, group: "normal", name: `${n}의 용사`, desc: HERO_DESC[n],
+    cond: `일반 시험에서 20문항 모두 ${n}번으로 마킹하고 제출` })),
+  { id: "collector", group: "normal", hidden: true, name: "용사 콜렉터",
+    desc: "다섯 개의 운명을 모두 찍은 자. 이제 너야말로 진정한 찍신!", cond: "1의 용사부터 5의 용사까지 모두 획득" },
+  { id: "blank", group: "normal", name: "백지의 전설", desc: "찍는 것조차 포기한 자.",
+    cond: "일반 시험에서 아무것도 마킹하지 않고 '백지 제출'" },
+  { id: "three", group: "normal", name: "삼세번의 기적", desc: "세 번이면 뭐라도 달라질 줄 알았지…",
+    cond: "각성제 없이 일반 시험을 누적 3회 완료 (각성제를 거절한 시험 포함)" },
+  { id: "forbidden", group: "awake", name: "금단의 선택", desc: "너는 결국 그걸 삼켰다.",
+    cond: "각성제를 먹은 상태로 시험을 처음 완료" },
+  { id: "curse4", group: "awake", name: "4번의 저주", desc: "모든 답은 4번이었다. 정말 네 선택이었을까?",
+    cond: "각성제를 먹은 뒤 20문항 모두 4번으로 마킹하고 제출" }
+];
+const BADGE_BY_ID = Object.fromEntries(BADGES.map((b) => [b.id, b]));
+const BADGE_TEXT = {
+  OPEN: "내 배지",
+  TITLE: "성령고 배지 컬렉션",
+  NORMAL: "일반 배지",
+  AWAKE: "각성 배지",
+  CLOSE: "닫기",
+  NEW: "새로운 배지 획득!",
+  OK: "확인",
+  GOT: "획득",
+  NOT_YET: "미획득",
+  HIDDEN_NAME: "???",
+  HIDDEN_DESC: "아직 정체를 알 수 없는 배지예요.",
+  HIDDEN_COND: "획득 조건: ???",
+  RESET: "배지 기록 초기화 (테스트용)",
+  RESET_CONFIRM: "한 번 더 누르면 배지가 모두 지워져요",
+  RESET_NOTE: "게임 회차 기록은 그대로 남아요.",
+  BLANK_BTN: "백지 제출",
+  BLANK_CONFIRM: "정말 아무것도 찍지 않고 제출할까?",
+  BLANK_YES: "백지 제출",
+  BLANK_NO: "취소"
+};
+
+const emptyBadgeData = () => ({ earned: [], normalCompleted: 0, collectorUnlocked: false });
+const badgeStore = {
+  load() {
+    try {
+      const raw = window.localStorage.getItem(BADGE_STORAGE_KEY);
+      const d = raw ? JSON.parse(raw) : null;
+      if (!d || !Array.isArray(d.earned)) return emptyBadgeData();
+      const earned = d.earned.filter((id) => BADGE_BY_ID[id]);
+      return { earned: [...new Set(earned)], normalCompleted: Math.max(0, d.normalCompleted | 0), collectorUnlocked: !!d.collectorUnlocked };
+    } catch (e) { return emptyBadgeData(); }
+  },
+  save(d) { try { window.localStorage.setItem(BADGE_STORAGE_KEY, JSON.stringify(d)); } catch (e) {} },
+  clear() { try { window.localStorage.removeItem(BADGE_STORAGE_KEY); } catch (e) {} }
+};
+
+/* 배지 판정: 최종 제출 답안 하나로 한 번만 계산한다. 이미 가진 배지는 다시 주지 않는다.
+   exam = { answers, drug, blank } → { data: 새 저장 데이터, gained: 새로 얻은 배지 id 목록 } */
+function evaluateBadges(prev, exam) {
+  const have = new Set(prev.earned);
+  const gained = [];
+  const give = (id) => { if (!have.has(id)) { have.add(id); gained.push(id); } };
+  let normalCompleted = prev.normalCompleted;
+  const { answers, drug, blank } = exam;
+  const allSame = (n) => answers.length === CONFIG.TOTAL_QUESTIONS && answers.every((a) => a === n);
+
+  if (!drug) {
+    // 일반 시험: 숫자 용사·백지·삼세번·용사 콜렉터만 판정
+    normalCompleted += 1;
+    if (blank) give("blank");
+    else for (let n = 1; n <= 5; n++) if (allSame(n)) give("hero" + n);
+    if (normalCompleted >= 3) give("three");
+    if (HERO_IDS.every((id) => have.has(id))) give("collector");
+  } else {
+    // 각성 시험: 금단의 선택·4번의 저주만 판정
+    give("forbidden");
+    if (allSame(4)) give("curse4");
+  }
+  const earned = BADGES.map((b) => b.id).filter((id) => have.has(id));
+  return { data: { earned, normalCompleted, collectorUnlocked: have.has("collector") }, gained };
+}
 
 /* 채점: 목표 점수만큼 실제로 정답이 일치하도록 정답표를 만든 뒤 진짜로 비교한다 */
 function gradeExam(answers, drug) {
@@ -656,9 +828,27 @@ const Sound = (() => {
   const onBeat = (fn) => { beatListener = fn; };
   const markGlitch = (lv) => { noise({ dur: .05 + lv * .02, vol: .03 + lv * .012, freq: 1800 + lv * 600, q: 3 }); if (lv >= 2) tone({ freq: randInt(400, 2200), type: "square", dur: .025, vol: .03 }); };
 
+  /* 배지 획득음 */
+  const badgeBright = () => {
+    [784, 988, 1175, 1568].forEach((f, i) => tone({ freq: f, type: "square", dur: i === 3 ? .28 : .1, vol: .05, delay: i * .08 }));
+    tone({ freq: 2349, dur: .25, vol: .03, delay: .34 });
+  };
+  const badgeGold = () => {   // 용사 콜렉터 전용 팡파르 + 반짝임
+    [523, 659, 784, 1047, 1319, 1568, 2093].forEach((f, i) => tone({ freq: f, type: "square", dur: .12, vol: .045, delay: i * .07 }));
+    [1047, 1319, 1568].forEach((f) => tone({ freq: f, type: "triangle", dur: .9, vol: .05, delay: .55 }));
+    for (let i = 0; i < 8; i++) tone({ freq: randInt(2600, 4200), dur: .08, vol: .025, delay: .6 + i * .09 });
+  };
+  const badgeDark = () => {   // 각성 배지: 약간 불길한 획득음
+    tone({ freq: 220, type: "triangle", dur: .5, vol: .09 });
+    tone({ freq: 233, type: "triangle", dur: .5, vol: .06, delay: .02 });
+    tone({ freq: 311, type: "sawtooth", dur: .7, vol: .035, delay: .28, slideTo: 207 });
+    tone({ freq: 55, type: "sine", dur: 1.1, vol: .2, delay: .05, slideTo: 40 });
+    noise({ dur: .35, vol: .03, freq: 900, q: 2, delay: .3 });
+  };
+
   return { unlock, setMuted, playBgm, stopBgm, startHeartbeat, setHeartRate, stopHeartbeat,
     click, darkClick, submit, sadResult, popup, thud, glitchBlip, celebrate, staticBurst, errorBuzz, laugh, stopAll,
-    silenceNow, onBeat, markGlitch };
+    silenceNow, onBeat, markGlitch, badgeBright, badgeGold, badgeDark };
 })();
 
 /* ========================= 작은 컴포넌트 ========================= */
@@ -734,15 +924,269 @@ function TitleArt() {
   </svg>`;
 }
 
+/* ========================= 배지 그림 (SVG) ========================= */
+const starPath = (cx, cy, R, r, n = 5) => {
+  let d = "";
+  for (let i = 0; i < n * 2; i++) {
+    const rad = i % 2 ? r : R, a = -Math.PI / 2 + (i * Math.PI) / n;
+    d += (i ? "L" : "M") + (cx + rad * Math.cos(a)).toFixed(2) + " " + (cy + rad * Math.sin(a)).toFixed(2);
+  }
+  return d + "Z";
+};
+const INK = "#34365a";
+
+function Ribbons({ c1, c2 }) {
+  return html`<g>
+    <path d="M30 70 L20 106 L31 100 L38 108 L46 76Z" fill=${c1} stroke=${INK} stroke-width="3" stroke-linejoin="round"/>
+    <path d="M70 70 L80 106 L69 100 L62 108 L54 76Z" fill=${c2 || c1} stroke=${INK} stroke-width="3" stroke-linejoin="round"/>
+  </g>`;
+}
+const Gloss = () => html`<ellipse cx="36" cy="30" rx="15" ry="6.5" fill="#fff" opacity=".55" transform="rotate(-28 36 30)"/>`;
+
+function BadgeIcon({ id, size = 84, locked = false, hideSecret = false }) {
+  const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");
+  const cls = "medal" + (locked ? " locked" : "")
+    + (!locked && id === "collector" ? " gold-shine" : "")
+    + (!locked && id === "forbidden" ? " red-glow glitchy" : "")
+    + (!locked && id === "curse4" ? " glitchy" : "");
+  const svg = (body) => html`<svg className=${cls} viewBox="0 -12 100 124" width=${size} height=${size * 1.24} aria-hidden="true">${body}</svg>`;
+
+  // 잠긴 히든 배지는 정체를 숨긴다
+  if (id === "collector" && hideSecret) {
+    return svg(html`<g>
+      <${Ribbons} c1="#bdb6a6"/>
+      <circle cx="50" cy="48" r="40" fill="#cfc8b8" stroke=${INK} stroke-width="4"/>
+      <circle cx="50" cy="48" r="31" fill="#e3ddcf" stroke=${INK} stroke-width="2.5" stroke-dasharray="5 4"/>
+      <text x="50" y="64" text-anchor="middle" font-size="44" fill="#fff" stroke=${INK} stroke-width="4" paint-order="stroke">?</text>
+    </g>`);
+  }
+
+  if (id.startsWith("hero")) {
+    const n = Number(id.slice(4));
+    const [base, inner, rib] = HERO_COLORS[n];
+    return svg(html`<g>
+      <${Ribbons} c1=${rib} c2=${base}/>
+      <circle cx="50" cy="48" r="40" fill=${base} stroke=${INK} stroke-width="4"/>
+      ${Array.from({ length: 12 }, (_, k) => html`<path key=${k} d="M50 48 L46 13 L54 13Z" fill="#fff" opacity=".28" transform=${`rotate(${k * 30} 50 48)`}/>`)}
+      <circle cx="50" cy="48" r="35" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="3 4" opacity=".9"/>
+      <circle cx="50" cy="48" r="27" fill=${inner} stroke=${INK} stroke-width="3"/>
+      <text x="50" y="64" text-anchor="middle" font-size="46" fill="#fff" stroke=${INK} stroke-width="5" paint-order="stroke">${n}</text>
+      <path d=${starPath(17, 20, 7, 3)} fill="#fff" stroke=${INK} stroke-width="2" stroke-linejoin="round"/>
+      <path d=${starPath(84, 74, 6, 2.6)} fill="#fff" stroke=${INK} stroke-width="2" stroke-linejoin="round"/>
+      <${Gloss}/>
+    </g>`);
+  }
+
+  if (id === "collector") {
+    return svg(html`<g>
+      <defs>
+        <radialGradient id=${"g" + uid} cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff6c2"/><stop offset=".45" stop-color="#ffd34d"/><stop offset="1" stop-color="#e09a12"/></radialGradient>
+        <linearGradient id=${"c" + uid} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe680"/><stop offset="1" stop-color="#f0a818"/></linearGradient>
+      </defs>
+      <${Ribbons} c1="#e2283c" c2="#3f97cf"/>
+      ${Array.from({ length: 18 }, (_, k) => {
+        const a = (k / 18) * Math.PI * 2;
+        return html`<circle key=${k} cx=${50 + 42 * Math.cos(a)} cy=${50 + 42 * Math.sin(a)} r="6" fill="#f0a818" stroke=${INK} stroke-width="2.5"/>`;
+      })}
+      <circle cx="50" cy="50" r="40" fill=${`url(#g${uid})`} stroke=${INK} stroke-width="4"/>
+      <circle cx="50" cy="50" r="33" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="2 3"/>
+      <circle cx="50" cy="50" r="29" fill="none" stroke="#b9770a" stroke-width="2"/>
+      <path d=${starPath(50, 54, 21, 9)} fill="#fff8d6" stroke=${INK} stroke-width="3" stroke-linejoin="round"/>
+      <path d="M30 14 L34 -2 L42 8 L50 -6 L58 8 L66 -2 L70 14Z" fill=${`url(#c${uid})`} stroke=${INK} stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="50" cy="-6" r="3.4" fill="#e2283c" stroke=${INK} stroke-width="1.8"/>
+      <circle cx="34" cy="-2" r="2.6" fill="#3f97cf" stroke=${INK} stroke-width="1.6"/>
+      <circle cx="66" cy="-2" r="2.6" fill="#3f97cf" stroke=${INK} stroke-width="1.6"/>
+      <path className="spark" d=${starPath(16, 22, 7, 2)} fill="#fff"/>
+      <path className="spark s2" d=${starPath(86, 34, 6, 1.8)} fill="#fff"/>
+      <path className="spark s3" d=${starPath(80, 80, 7, 2)} fill="#fff"/>
+      <${Gloss}/>
+    </g>`);
+  }
+
+  if (id === "blank") {
+    return svg(html`<g>
+      <${Ribbons} c1="#9a9aa3" c2="#c4c4cc"/>
+      <circle cx="50" cy="48" r="40" fill="#c9c9d0" stroke=${INK} stroke-width="4"/>
+      <circle cx="50" cy="48" r="34" fill="none" stroke="#f2f2f5" stroke-width="2.5" stroke-dasharray="3 4"/>
+      <rect x="27" y="25" width="46" height="46" rx="5" fill="#fffdf4" stroke=${INK} stroke-width="2.6"/>
+      <rect x="27" y="25" width="46" height="8" rx="3" fill="#dff1fb" stroke=${INK} stroke-width="2"/>
+      ${[0, 1, 2, 3].map((r) => [0, 1, 2, 3, 4].map((c) => html`<ellipse key=${r + "-" + c} cx=${33 + c * 8.5} cy=${41 + r * 8.5} rx="2.8" ry="3.4" fill="#fffdf4" stroke="#8fcdf0" stroke-width="1.5"/>`))}
+      <${Gloss}/>
+    </g>`);
+  }
+
+  if (id === "three") {
+    return svg(html`<g>
+      <defs><radialGradient id=${"t" + uid} cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff3b8"/><stop offset=".55" stop-color="#ffcc3d"/><stop offset="1" stop-color="#e8a118"/></radialGradient></defs>
+      <${Ribbons} c1="#f5a3b5" c2="#8fcdf0"/>
+      <circle cx="50" cy="48" r="40" fill=${`url(#t${uid})`} stroke=${INK} stroke-width="4"/>
+      <circle cx="50" cy="48" r="34" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="6 4"/>
+      <path d="M24 64 Q18 46 26 30" fill="none" stroke="#7fbf6a" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M76 64 Q82 46 74 30" fill="none" stroke="#7fbf6a" stroke-width="3.5" stroke-linecap="round"/>
+      ${[[22, 56], [21, 44], [25, 34]].map(([x, y], k) => html`<g key=${k}><ellipse cx=${x} cy=${y} rx="4" ry="2.3" fill="#9fdc86" stroke=${INK} stroke-width="1.4"/><ellipse cx=${100 - x} cy=${y} rx="4" ry="2.3" fill="#9fdc86" stroke=${INK} stroke-width="1.4"/></g>`)}
+      <text x="50" y="66" text-anchor="middle" font-size="50" fill="#fff" stroke=${INK} stroke-width="5" paint-order="stroke">3</text>
+      <path d=${starPath(50, 15, 6, 2.6)} fill="#fff" stroke=${INK} stroke-width="2" stroke-linejoin="round"/>
+      <circle cx="34" cy="60" r="3" fill="#f5a3b5" opacity=".9"/><circle cx="66" cy="60" r="3" fill="#f5a3b5" opacity=".9"/>
+      <${Gloss}/>
+    </g>`);
+  }
+
+  if (id === "forbidden") {
+    return svg(html`<g>
+      <path d="M30 70 L20 106 L31 100 L38 108 L46 76Z" fill="#1a0a0d" stroke="#b3202e" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M70 70 L80 106 L69 100 L62 108 L54 76Z" fill="#7a1220" stroke="#b3202e" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="50" cy="48" r="40" fill="#0d0b0e" stroke="#b3202e" stroke-width="4"/>
+      <circle cx="50" cy="48" r="33" fill="none" stroke="#5a1018" stroke-width="3"/>
+      <circle cx="50" cy="48" r="28" fill="#1b0c10"/>
+      <g transform="rotate(-32 50 48)">
+        <rect x="24" y="38" width="52" height="20" rx="10" fill="#fbfaf6" stroke="#f1e6e6" stroke-width="2"/>
+        <path d="M34 38 H50 V58 H34 A10 10 0 0 1 34 38Z" fill="#e2283c"/>
+        <rect x="24" y="38" width="52" height="20" rx="10" fill="none" stroke="#2a0a0e" stroke-width="2.4"/>
+        <line x1="50" y1="38" x2="50" y2="58" stroke="#2a0a0e" stroke-width="2.4"/>
+        <rect x="30" y="42" width="12" height="4" rx="2" fill="#fff" opacity=".55"/>
+      </g>
+      <path d="M12 30 h18" stroke="#ff2643" stroke-width="2" opacity=".7"/>
+      <path d="M70 70 h20" stroke="#1fe0d2" stroke-width="2" opacity=".5"/>
+    </g>`);
+  }
+
+  if (id === "curse4") {
+    return svg(html`<g>
+      <defs>
+        <filter id=${"n" + uid} x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .2  0 0 0 0 .25  0 0 0 .55 -.18"/></filter>
+        <clipPath id=${"k" + uid}><circle cx="50" cy="48" r="38"/></clipPath>
+      </defs>
+      <path d="M30 70 L20 106 L31 100 L38 108 L46 76Z" fill="#3a060c" stroke="#7a1220" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M70 70 L80 106 L69 100 L62 108 L54 76Z" fill="#5a0d16" stroke="#7a1220" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="50" cy="48" r="40" fill="#4a0910" stroke="#1a0205" stroke-width="4"/>
+      <rect x="0" y="0" width="100" height="100" filter=${`url(#n${uid})`} clip-path=${`url(#k${uid})`} opacity=".7"/>
+      <circle cx="50" cy="48" r="33" fill="none" stroke="#8f1d2c" stroke-width="2" stroke-dasharray="1 5"/>
+      <text x="50" y="64" text-anchor="middle" font-size="48" fill="#e8203a" stroke="#14020a" stroke-width="4" paint-order="stroke">4</text>
+      <path d="M57 64 q1.6 7 -0.4 13 q-1.4 3 -2.6 0 q-1 -5 1 -13Z" fill="#c4122a"/>
+      <path d="M42 63 q1 4 -.2 7 q-1 2 -1.8 0 q-.6 -3 .6 -7Z" fill="#c4122a"/>
+      <path d="M62 52 q1 6 -.2 10 q-1 2 -1.6 0 q-.4 -4 .4 -10Z" fill="#c4122a"/>
+      <circle cx="56" cy="82" r="2.2" fill="#c4122a"/>
+    </g>`);
+  }
+  return null;
+}
+
+/* 배지 상세 */
+function BadgeDetail({ id, earned, onClose }) {
+  const b = BADGE_BY_ID[id];
+  const secret = b.hidden && !earned;
+  useEffect(() => {
+    const k = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k);
+  }, [onClose]);
+  return html`<div className="modal-back" onClick=${onClose}>
+    <div className=${"modal" + (b.group === "awake" ? " dark" : "")} role="dialog" aria-modal="true" aria-label=${secret ? BADGE_TEXT.HIDDEN_NAME : b.name} onClick=${(e) => e.stopPropagation()}>
+      <div style=${{ display: "grid", placeItems: "center" }}><${BadgeIcon} id=${id} size=${110} locked=${!earned} hideSecret=${secret}/></div>
+      <div className="mname">${secret ? BADGE_TEXT.HIDDEN_NAME : b.name}</div>
+      <span className=${"mstate" + (earned ? "" : " no")}>${earned ? BADGE_TEXT.GOT : BADGE_TEXT.NOT_YET}</span>
+      <p className="mdesc">${secret ? BADGE_TEXT.HIDDEN_DESC : b.desc}</p>
+      <p className="mcond">${secret ? BADGE_TEXT.HIDDEN_COND : "획득 조건: " + b.cond}</p>
+      <div className="modal-btns"><button className="btn primary" onClick=${onClose} autoFocus>${BADGE_TEXT.CLOSE}</button></div>
+    </div>
+  </div>`;
+}
+
+/* 내 배지 화면 */
+function BadgeScreen({ data, onClose, onResetBadges }) {
+  const [open, setOpen] = useState(null);
+  const [armed, setArmed] = useState(false);
+  useEffect(() => { if (!armed) return; const t = setTimeout(() => setArmed(false), 3000); return () => clearTimeout(t); }, [armed]);
+  const has = new Set(data.earned);
+  const total = BADGES.length, got = BADGES.filter((b) => has.has(b.id)).length;
+  const section = (group, title, cls) => {
+    const list = BADGES.filter((b) => b.group === group);
+    return html`<section className=${"badge-sec " + cls}>
+      <h3>${title}<small>${list.filter((b) => has.has(b.id)).length} / ${list.length}</small></h3>
+      <div className="badge-grid">
+        ${list.map((b) => {
+          const earned = has.has(b.id), secret = b.hidden && !earned;
+          return html`<button key=${b.id} type="button" className=${"bcard" + (earned ? "" : " locked")} onClick=${() => { Sound.click(3); setOpen(b.id); }}
+            aria-label=${(secret ? "알 수 없는 배지" : b.name) + (earned ? " (획득)" : " (미획득)")}>
+            <${BadgeIcon} id=${b.id} size=${88} locked=${!earned} hideSecret=${secret}/>
+            <span className="bname">${secret ? BADGE_TEXT.HIDDEN_NAME : b.name}</span>
+          </button>`;
+        })}
+      </div>
+    </section>`;
+  };
+  return html`<div className="screen badge-screen"><div className="badge-wrap pop-in">
+    <div className="badge-head">
+      <h2>${BADGE_TEXT.TITLE}</h2>
+      <div className="badge-count"><span>${got} / ${total}</span><div className="bar"><i style=${{ width: (got / total) * 100 + "%" }}></i></div></div>
+    </div>
+    ${section("normal", BADGE_TEXT.NORMAL, "")}
+    ${section("awake", BADGE_TEXT.AWAKE, "awake")}
+    <div className="badge-close">
+      <button className="btn primary big" onClick=${onClose}>${BADGE_TEXT.CLOSE}</button>
+      <button className="link-btn" onClick=${() => { if (armed) { setArmed(false); onResetBadges(); } else setArmed(true); }}>
+        ${armed ? BADGE_TEXT.RESET_CONFIRM : BADGE_TEXT.RESET}</button>
+      ${armed && html`<span className="round-chip" style=${{ marginTop: 0 }}>${BADGE_TEXT.RESET_NOTE}</span>`}
+    </div>
+  </div>
+  ${open && html`<${BadgeDetail} id=${open} earned=${has.has(open)} onClose=${() => setOpen(null)}/>`}
+  </div>`;
+}
+
+/* 새 배지 획득 팝업: 한 시험에서 얻은 배지를 한 목록으로 차례차례 보여 준다 */
+function BadgeToast({ ids, dark, delay = 0, onClose }) {
+  const [show, setShow] = useState(delay === 0);
+  useEffect(() => {
+    if (!ids.length) return;
+    const ts = [];
+    const ring = () => {
+      const awake = ids.some((id) => BADGE_BY_ID[id].group === "awake");
+      if (awake) Sound.badgeDark(); else Sound.badgeBright();
+      if (ids.includes("collector")) ts.push(setTimeout(() => Sound.badgeGold(), 120 * ids.length + 500));
+    };
+    if (delay) ts.push(setTimeout(() => { setShow(true); ring(); }, delay));
+    else ring();
+    return () => ts.forEach(clearTimeout);
+  }, []); // eslint-disable-line
+  if (!show || !ids.length) return null;
+  return html`<div className=${"badge-toast" + (dark ? " dark" : "")} role="status" aria-live="polite">
+    <div className="tt">${BADGE_TEXT.NEW}</div>
+    <ul>${ids.map((id, i) => {
+      const b = BADGE_BY_ID[id];
+      return html`<li key=${id} style=${{ animationDelay: (i * .12) + "s" }}>
+        <${BadgeIcon} id=${id} size=${46}/>
+        <div>${b.name}<small>${b.desc}</small></div>
+      </li>`;
+    })}</ul>
+    <button className="btn primary" onClick=${onClose}>${BADGE_TEXT.OK}</button>
+  </div>`;
+}
+
+/* 백지 제출 확인창 */
+function BlankConfirm({ onYes, onNo }) {
+  return html`<div className="modal-back" onClick=${onNo}>
+    <div className="modal" role="alertdialog" aria-modal="true" aria-label=${BADGE_TEXT.BLANK_CONFIRM} onClick=${(e) => e.stopPropagation()}>
+      <div style=${{ display: "grid", placeItems: "center" }}><${BadgeIcon} id="blank" size=${70} locked=${true}/></div>
+      <p className="confirm-msg">${BADGE_TEXT.BLANK_CONFIRM}</p>
+      <div className="modal-btns">
+        <button className="btn" onClick=${onNo} autoFocus>${BADGE_TEXT.BLANK_NO}</button>
+        <button className="btn primary" onClick=${onYes}>${BADGE_TEXT.BLANK_YES}</button>
+      </div>
+    </div>
+  </div>`;
+}
+
 /* ========================= 화면들 ========================= */
-function TitleScreen({ playCount, onStart, onReset }) {
+function TitleScreen({ playCount, onStart, onReset, onBadges, badgeCount }) {
   const [armed, setArmed] = useState(false);
   useEffect(() => { if (!armed) return; const t = setTimeout(() => setArmed(false), 3000); return () => clearTimeout(t); }, [armed]);
   return html`<div className="screen center"><div className="title-wrap pop-in">
     <div className="logo"><div className="school">${TEXT.SCHOOL}</div><h1>${TEXT.TITLE}</h1></div>
     <${TitleArt}/>
     <p className="title-sub">${TEXT.TITLE_SUB}</p>
-    <button className="btn primary big" onClick=${onStart}>${TEXT.START}</button>
+    <div className="title-btns">
+      <button className="btn primary big" onClick=${onStart}>${TEXT.START}</button>
+      <button className="btn badge-btn" onClick=${onBadges}>${BADGE_TEXT.OPEN}<span className="cnt">${badgeCount} / ${BADGES.length}</span></button>
+    </div>
     <div>${playCount > 1 && html`<span className="round-chip">${TEXT.ROUND_INFO(playCount)}</span>`}</div>
     ${playCount > 1 && html`<button className="link-btn" onClick=${() => { if (armed) { setArmed(false); onReset(); } else setArmed(true); }}>
       ${armed ? TEXT.RESET_CONFIRM : TEXT.RESET}</button>`}
@@ -774,7 +1218,8 @@ function PillScreen({ level, onTake, onRefuse }) {
   </div>`;
 }
 
-function ExamScreen({ playCount, answers, onMark, onSubmit, drug, level }) {
+function ExamScreen({ playCount, answers, onMark, onSubmit, onBlankSubmit, drug, level }) {
+  const [askBlank, setAskBlank] = useState(false);
   const answered = answers.filter((a) => a !== null).length;
   const left = CONFIG.TOTAL_QUESTIONS - answered;
   const [ghosts, setGhosts] = useState([]);
@@ -889,8 +1334,10 @@ function ExamScreen({ playCount, answers, onMark, onSubmit, drug, level }) {
     <div className="exam-foot"><div className="foot-inner">
       <div className="progress"><div className="txt" aria-live="polite">${TEXT.LEFT(left)}</div>
         <div className="bar"><i style=${{ width: (answered / CONFIG.TOTAL_QUESTIONS) * 100 + "%" }}></i></div></div>
+      ${!drug && answered === 0 && html`<button className="btn blank-btn" onClick=${() => { Sound.click(0); setAskBlank(true); }}>${BADGE_TEXT.BLANK_BTN}</button>`}
       <button className="btn primary" disabled=${left > 0} onClick=${onSubmit}>${TEXT.SUBMIT}</button>
     </div></div>
+    ${askBlank && !drug && html`<${BlankConfirm} onNo=${() => setAskBlank(false)} onYes=${() => { setAskBlank(false); onBlankSubmit(); }}/>`}
   </div>`;
 }
 
@@ -900,7 +1347,7 @@ function GradingScreen({ drug }) {
   </div></div>`;
 }
 
-function ResultScreen({ result, playCount, onRetry }) {
+function ResultScreen({ result, playCount, onRetry, newBadges, onBadgesSeen }) {
   return html`<div className="screen center"><div className="card result-card pop-in">
     <div className="result-head">${TEXT.REPORT(playCount)}</div>
     <div className="result-grid">
@@ -910,7 +1357,9 @@ function ResultScreen({ result, playCount, onRetry }) {
     <div className="correct">${TEXT.CORRECT(result.correct)}</div>
     <div className="mono"><${Face} happy=${result.score >= 100}/><p>${monologueFor(result.score)}</p></div>
     <button className="btn primary big" onClick=${onRetry}>${TEXT.RETRY}</button>
-  </div></div>`;
+  </div>
+  ${newBadges.length > 0 && html`<${BadgeToast} ids=${newBadges} delay=${700} onClose=${onBadgesSeen}/>`}
+  </div>`;
 }
 
 function Confetti() {
@@ -961,7 +1410,7 @@ function ErrorScreen() {
   </div></div>`;
 }
 
-function EndingScreen({ onRestart }) {
+function EndingScreen({ onRestart, newBadges, onBadgesSeen }) {
   const [notice, setNotice] = useState(false);
   const openTruth = () => {
     if (CONFIG.DRAMA_URL) window.open(CONFIG.DRAMA_URL, "_blank", "noopener,noreferrer");
@@ -975,7 +1424,9 @@ function EndingScreen({ onRestart }) {
       ${notice && html`<p className="notice" role="status">${TEXT.ENDING_NO_URL}</p>`}
       <button className="btn again" onClick=${onRestart}>${TEXT.ENDING_RESTART}</button>
     </div>
-  </div></div>`;
+  </div>
+  ${newBadges.length > 0 && html`<${BadgeToast} ids=${newBadges} dark=${true} delay=${4800} onClose=${onBadgesSeen}/>`}
+  </div>`;
 }
 
 /* ========================= 메인 게임 ========================= */
@@ -992,6 +1443,23 @@ function App() {
   const [rankShown, setRankShown] = useState("1");
   const [scare, setScare] = useState(0);
   const [audioReady, setAudioReady] = useState(false);
+  // 배지: 게임 회차 기록과 따로 저장·초기화
+  const [badgeData, setBadgeData] = useState(() => {
+    const d = badgeStore.load();
+    // 숫자 용사 5개가 이미 저장돼 있으면 용사 콜렉터를 자동 해금
+    if (HERO_IDS.every((id) => d.earned.includes(id)) && !d.earned.includes("collector")) {
+      return { ...d, earned: BADGES.map((b) => b.id).filter((id) => id === "collector" || d.earned.includes(id)), collectorUnlocked: true };
+    }
+    return d;
+  });
+  const [newBadges, setNewBadges] = useState([]);   // 이번 시험에서 새로 얻은 배지 (알림용)
+  useEffect(() => { badgeStore.save(badgeData); }, [badgeData]);
+  // 제출 시점의 답안으로 배지를 한 번만 판정 (새로 얻은 것만 알림)
+  const awardBadges = (exam) => {
+    const { data, gained } = evaluateBadges(badgeData, exam);
+    setBadgeData(data);
+    setNewBadges(gained);
+  };
 
   const answered = answers.filter((a) => a !== null).length;
   const glitchLevel = tookDrug && gamePhase === "exam" ? stageOf(answered) : 0;
@@ -1019,7 +1487,7 @@ function App() {
   useEffect(() => {
     if (!audioReady) return;
     if (gamePhase === "pill") { Sound.playBgm(pillLevel >= 1 ? "tense2" : "tense"); return; }
-    if (!tookDrug && ["title", "intro", "exam", "grading", "result"].includes(gamePhase)) { Sound.playBgm("normal"); return; }
+    if (!tookDrug && ["title", "intro", "exam", "grading", "result", "badges"].includes(gamePhase)) { Sound.playBgm("normal"); return; }
     if (tookDrug && ["blackout", "exam", "grading"].includes(gamePhase)) {
       Sound.stopBgm();
       if (gamePhase === "exam") Sound.startHeartbeat(CONFIG.HEART_BPM[0]);
@@ -1078,6 +1546,7 @@ function App() {
     setResult(null);
     setTookDrug(false);
     setHorrorStep(0);
+    setNewBadges([]);
     setGamePhase(round >= CONFIG.PILL_START_ROUND ? "pill" : "exam");
   }, []);
 
@@ -1093,6 +1562,15 @@ function App() {
     if (!tookDrug) Sound.submit();
     const r = gradeExam(answers, tookDrug);
     setResult({ score: r.score, rank: r.rank, correct: r.correct });
+    awardBadges({ answers: answers.slice(), drug: tookDrug, blank: false });
+    setGamePhase("grading");
+  };
+  // 백지 제출: 일반 시험에서만, 마킹이 하나도 없을 때만. 0점 처리.
+  const handleBlankSubmit = () => {
+    if (tookDrug || answers.some((a) => a !== null)) return;
+    Sound.submit();
+    setResult({ score: 0, rank: calcRank(0), correct: 0 });
+    awardBadges({ answers: answers.slice(), drug: false, blank: true });
     setGamePhase("grading");
   };
   const handleRetry = () => {
@@ -1117,23 +1595,34 @@ function App() {
     store.clear();
     setPlayCount(1); setRefusalCount(0); setTookDrug(false);
     setAnswers(emptyAnswers()); setResult(null); setHorrorStep(0); setRankShown("1"); setScare(0);
+    setNewBadges([]);
     setGamePhase("title");
   };
+  const resetBadges = () => {   // 개발 테스트용: 배지만 초기화 (게임 회차는 유지)
+    badgeStore.clear();
+    setBadgeData(emptyBadgeData());
+    setNewBadges([]);
+  };
+  const openBadges = () => { if (Sound.unlock()) setAudioReady(true); Sound.click(4); setGamePhase("badges"); };
+  const badgesSeen = () => { Sound.click(2); setNewBadges([]); };
 
   let screen = null;
   switch (gamePhase) {
-    case "title": screen = html`<${TitleScreen} playCount=${playCount} onStart=${handleStart} onReset=${resetAll}/>`; break;
+    case "title": screen = html`<${TitleScreen} playCount=${playCount} onStart=${handleStart} onReset=${resetAll}
+      onBadges=${openBadges} badgeCount=${badgeData.earned.length}/>`; break;
+    case "badges": screen = html`<${BadgeScreen} data=${badgeData} onClose=${() => { Sound.click(2); setGamePhase("title"); }} onResetBadges=${resetBadges}/>`; break;
     case "intro": screen = html`<${IntroScreen} onBegin=${() => { Sound.click(4); startRound(playCount); }}/>`; break;
     case "pill": screen = html`<${PillScreen} level=${pillLevel} onTake=${handleTake} onRefuse=${handleRefuse}/>`; break;
     case "blackout": screen = html`<div className="blackout"></div>`; break;
     case "exam": screen = html`<${ExamScreen} playCount=${playCount} answers=${answers} onMark=${handleMark}
-      onSubmit=${handleSubmit} drug=${tookDrug} level=${glitchLevel}/>`; break;
+      onSubmit=${handleSubmit} onBlankSubmit=${handleBlankSubmit} drug=${tookDrug} level=${glitchLevel}/>`; break;
     case "grading": screen = html`<${GradingScreen} drug=${tookDrug}/>`; break;
-    case "result": screen = result && html`<${ResultScreen} result=${result} playCount=${playCount} onRetry=${handleRetry}/>`; break;
+    case "result": screen = result && html`<${ResultScreen} result=${result} playCount=${playCount} onRetry=${handleRetry}
+      newBadges=${newBadges} onBadgesSeen=${badgesSeen}/>`; break;
     case "horror": screen = result && html`<${HorrorResultScreen} result=${result} playCount=${playCount} step=${horrorStep} rankShown=${rankShown} scare=${scare}/>`; break;
     case "message": screen = html`<${MessageScreen}/>`; break;
     case "error": screen = html`<${ErrorScreen}/>`; break;
-    case "ending": screen = html`<${EndingScreen} onRestart=${resetAll}/>`; break;
+    case "ending": screen = html`<${EndingScreen} onRestart=${resetAll} newBadges=${newBadges} onBadgesSeen=${badgesSeen}/>`; break;
     default: screen = null;
   }
 
