@@ -1070,8 +1070,9 @@ function ExamScreen({ playCount, answers, onMark, onSubmit, onBlank, drug, level
     <div className="exam-foot"><div className="foot-inner">
       <div className="progress"><div className="txt" aria-live="polite">${TEXT.LEFT(left)}</div>
         <div className="bar"><i style=${{ width: (answered / CONFIG.TOTAL_QUESTIONS) * 100 + "%" }}></i></div></div>
-      ${!drug && answered === 0 && html`<button className="btn blank-btn" onClick=${() => setConfirmBlank(true)}>${TEXT.BLANK_SUBMIT}</button>`}
-      <button className="btn primary" disabled=${left > 0} onClick=${onSubmit}>${TEXT.SUBMIT}</button>
+      ${/* 아무것도 마킹하지 않았을 때(일반 시험)는 제출하기가 곧 백지 제출 */ ""}
+      <button className="btn primary" disabled=${left > 0 && !(!drug && answered === 0)}
+        onClick=${!drug && answered === 0 ? () => setConfirmBlank(true) : onSubmit}>${TEXT.SUBMIT}</button>
     </div></div>
     ${confirmBlank && html`<div className="modal-back"><div className="modal" role="dialog" aria-modal="true">
       <p>${TEXT.BLANK_CONFIRM}</p>
